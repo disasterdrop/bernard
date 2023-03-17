@@ -10,6 +10,9 @@ use Bernard\Message;
 
 class EnvelopeEventTest extends \PHPUnit\Framework\TestCase
 {
+    private $envelope;
+    private $queue;
+
     protected function setUp(): void
     {
         $message = $this->getMockBuilder(Message::class)->disableOriginalConstructor()

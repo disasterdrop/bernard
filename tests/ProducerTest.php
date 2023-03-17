@@ -11,6 +11,13 @@ use Symfony\Component\EventDispatcher\EventDispatcher;
 
 class ProducerTest extends \PHPUnit\Framework\TestCase
 {
+    /** @var \Bernard\QueueFactory\InMemoryFactory */
+    private InMemoryFactory $queues;
+    /** @var \Symfony\Component\EventDispatcher\EventDispatcher */
+    private EventDispatcher $dispatcher;
+    /** @var \Bernard\Producer */
+    private Producer $producer;
+
     protected function setUp(): void
     {
         $this->queues = new InMemoryFactory();

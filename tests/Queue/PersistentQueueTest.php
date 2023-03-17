@@ -9,6 +9,11 @@ use Bernard\Queue\PersistentQueue;
 
 class PersistentQueueTest extends AbstractQueueTest
 {
+    /** @var \Bernard\Driver|(\Bernard\Driver&\PHPUnit\Framework\MockObject\MockObject)|\PHPUnit\Framework\MockObject\MockObject */
+    private \Bernard\Driver|\PHPUnit\Framework\MockObject\MockObject $driver;
+    /** @var \Bernard\Serializer|(\Bernard\Serializer&\PHPUnit\Framework\MockObject\MockObject)|\PHPUnit\Framework\MockObject\MockObject */
+    private \Bernard\Serializer|\PHPUnit\Framework\MockObject\MockObject $serializer;
+
     protected function setUp(): void
     {
         $this->driver = $this->createMock('Bernard\Driver');
@@ -94,7 +99,11 @@ class PersistentQueueTest extends AbstractQueueTest
         $this->serializer->expects($this->at(1))->method('unserialize')->with($this->equalTo('message2'));
         $this->serializer->expects($this->at(2))->method('unserialize')->with($this->equalTo('message3'));
 
-        $this->driver->expects($this->once())->method('peekQueue')->with($this->equalTo('send-newsletter'), $this->equalTo($index), $this->equalTo($limit))
+        $this->driver->expects($this->once())->method('peekQueue')->with(
+            $this->equalTo('send-newsletter'),
+            $this->equalTo($index),
+            $this->equalTo($limit)
+        )
             ->willReturn(['message1', 'message2', 'message3']);
 
         $queue = $this->createQueue('send-newsletter');
