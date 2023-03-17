@@ -27,7 +27,7 @@ class InMemoryQueue extends AbstractQueue
     /**
      * {@inheritdoc}
      */
-    public function count()
+    public function count(): int
     {
         $this->errorIfClosed();
 

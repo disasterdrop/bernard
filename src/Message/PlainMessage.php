@@ -29,7 +29,7 @@ final class PlainMessage implements Message, \ArrayAccess
     /**
      * {@inheritdoc}
      */
-    public function getName()
+    public function getName(): string
     {
         return $this->name;
     }
@@ -37,7 +37,7 @@ final class PlainMessage implements Message, \ArrayAccess
     /**
      * @return array
      */
-    public function all()
+    public function all(): array
     {
         return $this->arguments;
     }
@@ -49,7 +49,7 @@ final class PlainMessage implements Message, \ArrayAccess
      *
      * @return mixed
      */
-    public function get($name)
+    public function get($name): mixed
     {
         return $this->has($name) ? $this->arguments[$name] : null;
     }
@@ -61,17 +61,17 @@ final class PlainMessage implements Message, \ArrayAccess
      *
      * @return bool
      */
-    public function has($name)
+    public function has($name): bool
     {
         return \array_key_exists($name, $this->arguments);
     }
 
-    public function offsetGet($offset)
+    public function offsetGet($offset): mixed
     {
         return $this->get($offset);
     }
 
-    public function offsetExists($offset)
+    public function offsetExists($offset): bool
     {
         return $this->has($offset);
     }
@@ -86,12 +86,12 @@ final class PlainMessage implements Message, \ArrayAccess
         throw new \LogicException('Message is immutable');
     }
 
-    public function __get($property)
+    public function __get($property): mixed
     {
         return $this->get($property);
     }
 
-    public function __isset($property)
+    public function __isset($property): bool
     {
         return $this->has($property);
     }
