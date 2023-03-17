@@ -10,6 +10,9 @@ use Symfony\Component\Console\Tester\CommandTester;
 
 class ConsumeCommandTest extends \PHPUnit\Framework\TestCase
 {
+    private $queues;
+    private $consumer;
+
     protected function setUp(): void
     {
         $this->queues = new InMemoryFactory();

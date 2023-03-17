@@ -5,11 +5,16 @@ declare(strict_types=1);
 namespace Bernard\Tests\Driver\Doctrine;
 
 use Bernard\Driver\Doctrine\ConnectionListener;
+use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\DBALException;
+use Prophecy\Prophecy\ObjectProphecy;
 
 class ConnectionListenerTest extends \PHPUnit\Framework\TestCase
 {
     use \Prophecy\PhpUnit\ProphecyTrait;
+
+    private Connection|ObjectProphecy $connection;
+    private ConnectionListener $listener;
 
     protected function setUp(): void
     {

@@ -15,6 +15,7 @@ class DriverTest extends \PHPUnit\Framework\TestCase
      * @var Driver
      */
     private $driver;
+    private $baseDir;
 
     protected function setUp(): void
     {
@@ -51,7 +52,7 @@ class DriverTest extends \PHPUnit\Framework\TestCase
 
         $this->driver->removeQueue('send-newsletter');
 
-        $this->assertDirectoryNotExists($this->baseDir.\DIRECTORY_SEPARATOR.'send-newsletter');
+        $this->assertDirectoryDoesNotExist($this->baseDir.\DIRECTORY_SEPARATOR.'send-newsletter');
     }
 
     public function testRemoveQueueWithPoppedMessage(): void
@@ -62,7 +63,7 @@ class DriverTest extends \PHPUnit\Framework\TestCase
 
         $this->driver->removeQueue('send-newsletter');
 
-        $this->assertDirectoryNotExists($this->baseDir.\DIRECTORY_SEPARATOR.'send-newsletter');
+        $this->assertDirectoryDoesNotExist($this->baseDir.\DIRECTORY_SEPARATOR.'send-newsletter');
     }
 
     public function testPushMessage(): void

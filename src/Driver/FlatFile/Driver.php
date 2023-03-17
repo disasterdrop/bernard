@@ -182,7 +182,7 @@ final class Driver implements \Bernard\Driver
         $file = new \SplFileObject($path, 'r+');
         $file->flock(\LOCK_EX);
 
-        $meta = unserialize($file->fgets());
+        $meta = unserialize($file->fgets()) ?: [];
 
         $id = $meta[$queueName] ?? 0;
         ++$id;
